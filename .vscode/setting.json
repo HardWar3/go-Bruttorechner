@@ -1,0 +1,15 @@
+{
+    "editor.bracketPairColorization.enabled": true,
+    "window.zoomLevel": 2,
+    "workbench.colorTheme": "2077",
+    "editor.formatOnSave": false,
+    "[golang]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "golang.go",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": false
+        }
+    },
+    "go.toolsManagement.autoUpdate": true,
+}
