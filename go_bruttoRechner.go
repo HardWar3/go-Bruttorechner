@@ -19,7 +19,6 @@ import (
 	"go_bruttoRechner/lohnsteuer2023"
 	"go_bruttoRechner/sozialversicherungen"
 	"go_bruttoRechner/user"
-	"go_bruttoRechner/zusammenrechnen"
 
 	"github.com/jung-kurt/gofpdf"
 )
@@ -300,7 +299,7 @@ func process() int {
 				kirchensteuer.Kirchensteuer(&user)
 			}
 			sozialversicherungen.Sozialversicherungen(&user)
-			zusammenrechnen.Zusammenrechnen(&user)
+			//function.Zusammenrechnen(&user)
 
 			if opt_format == "txt" {
 
@@ -825,7 +824,7 @@ func process() int {
 			kirchensteuer.Kirchensteuer(&user_daten)
 		}
 		sozialversicherungen.Sozialversicherungen(&user_daten)
-		zusammenrechnen.Zusammenrechnen(&user_daten)
+		//function.Zusammenrechnen(&user_daten)
 
 		file_path := ""
 
