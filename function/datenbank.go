@@ -22,12 +22,12 @@ func Datenbank(firmen_nummer int64, firmenpersonal_nummer int64) int {
 				}
 			}
 
-			fmt.Printf("die Firma ist vorhanden aber der Mitarbeiter ist noch nicht angelegt worden, Personalnummer %ld \n", firmenpersonal_nummer)
+			fmt.Printf("die Firma ist vorhanden aber der Mitarbeiter ist noch nicht angelegt worden, Personalnummer %d \n", firmenpersonal_nummer)
 			return 1
 		}
 	}
 
-	fmt.Printf("die Firma ist in der Dankenbank nicht angelegt Firmennummer %ld - Programm wurde beendet - \n", firmen_nummer)
+	fmt.Printf("die Firma ist in der Dankenbank nicht angelegt Firmennummer %d - Programm wurde beendet - \n", firmen_nummer)
 	return 1
 
 }

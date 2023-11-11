@@ -115,7 +115,7 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 
 		if user.Re4 < 0 {
 
-			fmt.Printf("ERROR %f : - Feld RE4 ist im Negativen bereich\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - Feld RE4 ist im Negativen bereich\n", user.Id_nummer)
 			return 1
 
 		} else if user.Re4 > 0 {
@@ -140,13 +140,13 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 				user.Jre4 = user.Re4 * 360
 			} else {
 				// abbruch des Programms an dieser Stelle wegen falscher LZZ
-				fmt.Printf("ERROR %f : - Feld LZZ hat ein Problem\n", user.Id_nummer)
+				fmt.Printf("ERROR %d : - Feld LZZ hat ein Problem\n", user.Id_nummer)
 				return 1
 			}
 
 		} else {
 
-			fmt.Printf("ERROR %f : - Feld RE4 hat ein Problem\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - Feld RE4 hat ein Problem\n", user.Id_nummer)
 			return 1
 
 		}
@@ -165,14 +165,14 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 
 		if user.Vbez < 0 {
 
-			fmt.Printf("ERROR %f : - Feld VBEZ ist im negativen Wertebereich\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - Feld VBEZ ist im negativen Wertebereich\n", user.Id_nummer)
 			return 1
 
 		}
 
 		// vbez darf nicht größer re4 sein
 		if user.Vbez >= user.Re4 {
-			fmt.Printf("ERROR %f : - der VBEZ ist größer RE4 - VBEZ muss kleiner RE4 sein\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - der VBEZ ist größer RE4 - VBEZ muss kleiner RE4 sein\n", user.Id_nummer)
 			return 1
 		}
 
@@ -207,13 +207,13 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 		// steuerklasse darf nicht größer 6 oder kleiner 1 gehen und in stkl 2 muss zkf angegeben werden
 		// und Kinderfreibeträge checken stkl 1 und stkl 2 wichtig
 		if user.Stkl < 1 || user.Stkl > 6 {
-			fmt.Printf("ERROR %f : - es Stimmt etwas nicht mit dem FELD STKL\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - es Stimmt etwas nicht mit dem FELD STKL\n", user.Id_nummer)
 			return 1
 		} else if user.Stkl == 2 && user.Zkf < 0.5 {
-			fmt.Printf("ERROR %f : - STKL 2 müssen Kinder angegeben werden\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - STKL 2 müssen Kinder angegeben werden\n", user.Id_nummer)
 			return 1
 		} else if user.Stkl == 1 && user.Zkf > 0 {
-			fmt.Printf("ERROR %f : - STKL 1 kann keine Kinder haben\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - STKL 1 kann keine Kinder haben\n", user.Id_nummer)
 			return 1
 		}
 
@@ -240,7 +240,7 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 
 		// religion
 		if user.R < 0 || user.R > 1 {
-			fmt.Printf("ERROR %f : - Religion kann nur 0 oder 1 sein\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - Religion kann nur 0 oder 1 sein\n", user.Id_nummer)
 			return 1
 		}
 
@@ -278,16 +278,16 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 
 		// rentenversicherung und pvs
 		if user.Krv < 0 || user.Krv > 2 {
-			fmt.Printf("ERROR %f : - Rentenversicherung kann nur 0, 1 oder 2 sein\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - Rentenversicherung kann nur 0, 1 oder 2 sein\n", user.Id_nummer)
 			return 1
 		} else if user.Krv == 1 {
 			if user.Pvs < 0 || user.Pvs > 1 {
-				fmt.Printf("ERROR %f : - der PVS kann nur 0 oder 1 sein\n", user.Id_nummer)
+				fmt.Printf("ERROR %d : - der PVS kann nur 0 oder 1 sein\n", user.Id_nummer)
 				return 1
 			}
 		} else {
 			if user.Pvs != 0 {
-				fmt.Printf("ERROR %f : - wenn KRV 0 oder 2 ist muss PVS 0 sein\n", user.Id_nummer)
+				fmt.Printf("ERROR %d : - wenn KRV 0 oder 2 ist muss PVS 0 sein\n", user.Id_nummer)
 				return 1
 			}
 		}
@@ -323,11 +323,11 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 		// pkv Krankenversicherung 0 1 2 privat und privat mit schuss
 		// pkv 1 2 braucht pkpv als feld !!!
 		if user.Pkv < 0 || user.Pkv > 2 {
-			fmt.Printf("ERROR %f : - wenn PKV kann nur 0, 1 oder 2 sein\n", user.Id_nummer)
+			fmt.Printf("ERROR %d : - wenn PKV kann nur 0, 1 oder 2 sein\n", user.Id_nummer)
 			return 1
 		} else if user.Pkv != 0 {
 			if user.Kvz != 0 {
-				fmt.Printf("ERROR %f : - der KVZ muss 0 sein bei PKV 1 und 2\n")
+				fmt.Printf("ERROR %d : - der KVZ muss 0 sein bei PKV 1 und 2\n", user.Id_nummer)
 				return 1
 			}
 
@@ -343,7 +343,7 @@ func Lr_parameter_pruefung(users []user.User, inhalt_vom_file []string) int {
 
 		} else {
 			if user.Kvz == 0 {
-				fmt.Println("ERROR %f : - der KVZ muss gesetzt sein bei PKV 0\n", user.Id_nummer)
+				fmt.Printf("ERROR %d : - der KVZ muss gesetzt sein bei PKV 0\n", user.Id_nummer)
 				return 1
 			}
 		}

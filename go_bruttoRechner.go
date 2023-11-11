@@ -17,6 +17,7 @@ import (
 	"go_bruttoRechner/lohnsteuer2021"
 	"go_bruttoRechner/lohnsteuer2022"
 	"go_bruttoRechner/lohnsteuer2023"
+	"go_bruttoRechner/lohnsteuer2024"
 	"go_bruttoRechner/sozialversicherungen"
 	"go_bruttoRechner/user"
 
@@ -115,6 +116,9 @@ func process_arguments(args []string) int {
 				index++
 			} else if args[index+1] == "23" {
 				opt_lohn = "23"
+				index++
+			} else if args[index+1] == "24" {
+				opt_lohn = "24"
 				index++
 			} else {
 				return 1
@@ -293,13 +297,15 @@ func process() int {
 				lohnsteuer2022.Lohnsteuer2022(&user)
 			} else if opt_lohn == "23" {
 				lohnsteuer2023.Lohnsteuer2023(&user)
+			} else if opt_lohn == "24" {
+				lohnsteuer2024.Lohnsteuer2024(&user)
 			}
 
 			if user.R == 1 {
 				kirchensteuer.Kirchensteuer(&user)
 			}
 			sozialversicherungen.Sozialversicherungen(&user)
-			//function.Zusammenrechnen(&user)
+			function.Zusammenrechnen(&user)
 
 			if opt_format == "txt" {
 
@@ -473,7 +479,7 @@ func process() int {
 				pdf := newReport(&user)
 
 				if pdf.Err() {
-					log.Fatalf("PDF Datei konnte nicht erstellt werden\n", pdf.Error())
+					log.Fatalf("PDF Datei konnte nicht erstellt werden %s \n", pdf.Error())
 					return 1
 				}
 
@@ -818,13 +824,15 @@ func process() int {
 			lohnsteuer2022.Lohnsteuer2022(&user_daten)
 		} else if opt_lohn == "23" {
 			lohnsteuer2023.Lohnsteuer2023(&user_daten)
+		} else if opt_lohn == "24" {
+			lohnsteuer2024.Lohnsteuer2024(&user_daten)
 		}
 
 		if user_daten.R == 1 {
 			kirchensteuer.Kirchensteuer(&user_daten)
 		}
 		sozialversicherungen.Sozialversicherungen(&user_daten)
-		//function.Zusammenrechnen(&user_daten)
+		function.Zusammenrechnen(&user_daten)
 
 		file_path := ""
 
